@@ -131,21 +131,17 @@ This repository is shared for portfolio and demonstration purposes. No license t
 
 A little peek inside Mariah Crafts OS ♡
 
-![Mariah Crafts OS Dashboard](<img width="1096" height="566" alt="Screenshot 2026-11-16 022803" src="https://github.com/user-attachments/assets/d19b0132-7cf6-43ed-afcb-684cfb12de91" />
+![Mariah Crafts OS Dashboard](https://github.com/user-attachments/assets/d19b0132-7cf6-43ed-afcb-684cfb12de91)
 
 ### ✦ Explore the Experience
 
 | Dashboard | Portfolio |
 |-----------|-----------|
-| ![Dashboard](<img width="1172" height="465" alt="Screenshot 2026-11-16 023131" src="https://github.com/user-attachments/assets/862956da-e34c-47e2-93cd-f58d68bb72ce" />
-) | ![Portfolio](<img width="1337" height="578" alt="image" src="https://github.com/user-attachments/assets/19e4ec63-1544-4a08-bba5-51f183ca3be0" />
-) |
+| ![Dashboard](https://github.com/user-attachments/assets/862956da-e34c-47e2-93cd-f58d68bb72ce) | ![Portfolio](https://github.com/user-attachments/assets/19e4ec63-1544-4a08-bba5-51f183ca3be0) |
 
 | About Me | Services |
 |----------|----------|
-| ![About](<img width="1145" height="577" alt="Screenshot 2026-11-16 022821" src="https://github.com/user-attachments/assets/17cf7e9b-55e0-4982-96ec-fdd56c7cd308" />
-) | ![Services](<img width="1157" height="583" alt="Screenshot 2026-11-16 022833" src="https://github.com/user-attachments/assets/3a3b5f3a-3323-4f45-9703-ce02beb7f414" />
-) |
+| ![About](https://github.com/user-attachments/assets/17cf7e9b-55e0-4982-96ec-fdd56c7cd308) | ![Services](https://github.com/user-attachments/assets/3a3b5f3a-3323-4f45-9703-ce02beb7f414) |
 
 ### ♡ Live Website
 
