@@ -131,8 +131,8 @@ This repository is shared for portfolio and demonstration purposes. No license t
 
 A little peek inside Mariah Crafts OS ♡
 
-![Mariah Crafts OS Dashboard](<img width="1337" height="578" alt="Screenshot 2026-11-16 022712" src="https://github.com/user-attachments/assets/e696822d-3705-401c-bd28-e7db653f8795" />
-)
+![Mariah Crafts OS Dashboard](https://github.com/user-attachments/assets/e696822d-3705-401c-bd28-e7db653f8795)
+
 
 ### ✦ Explore the Experience
 
