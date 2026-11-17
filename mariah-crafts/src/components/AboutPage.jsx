@@ -1,4 +1,5 @@
 
+import { useEffect, useState } from "react";
 import {
   ArrowUpRight,
   Download,
@@ -8,6 +9,8 @@ import {
   Award,
   GraduationCap,
 } from "lucide-react";
+
+import { supabase } from "../lib/supabase";
 
 const skills = [
   "Graphic Design",
@@ -34,11 +37,60 @@ const credentials = [
 ];
 
 export default function AboutPage({ onNavigate }) {
+  const [aboutPhoto, setAboutPhoto] = useState("");
+  const [photoFailed, setPhotoFailed] = useState(false);
+  const [resumeUrl, setResumeUrl] = useState("");
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadAboutData() {
+      const [photoResult, resumeResult] = await Promise.all([
+        supabase
+          .from("portfolio_site_settings")
+          .select("value")
+          .eq("key", "about_photo_url")
+          .maybeSingle(),
+
+        supabase.rpc("get_public_resume"),
+      ]);
+
+      if (!active) return;
+
+      if (photoResult.error) {
+        console.error(
+          "About photo loading error:",
+          photoResult.error
+        );
+      } else {
+        setAboutPhoto(photoResult.data?.value || "");
+        setPhotoFailed(false);
+      }
+
+      if (resumeResult.error) {
+        console.error(
+          "Resume loading error:",
+          resumeResult.error
+        );
+      } else {
+        setResumeUrl(resumeResult.data || "");
+      }
+    }
+
+    loadAboutData();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <section className="about-page" id="about">
       {/* PAGE HEADING */}
       <div className="about-page-heading">
-        <p className="eyebrow">03 / BEHIND THE SCREEN</p>
+        <p className="eyebrow">
+          03 / BEHIND THE SCREEN
+        </p>
 
         <h2>
           Meet the <span className="pink">Creator.</span>
@@ -54,7 +106,6 @@ export default function AboutPage({ onNavigate }) {
         {/* PHOTO SECTION */}
         <div className="about-photo-card">
           <div className="creator-photo-effects">
-            {/* FLOATING DECORATIONS */}
             <div
               className="creator-photo-sparkles"
               aria-hidden="true"
@@ -76,26 +127,34 @@ export default function AboutPage({ onNavigate }) {
               </span>
             </div>
 
-            {/* ACTUAL PHOTO FRAME */}
             <div className="creator-photo-frame">
-              <div className="about-photo-placeholder">
-                <span>YOUR PHOTO HERE</span>
-                <span className="about-photo-star">
-                  ✳
-                </span>
-              </div>
+              {aboutPhoto && !photoFailed ? (
+                <img
+                  src={aboutPhoto}
+                  alt="Mariah, Creative Technologist"
+                  className="about-display-photo"
+                  onError={() => setPhotoFailed(true)}
+                />
+              ) : (
+                <div className="about-photo-placeholder">
+                  <span>YOUR PHOTO HERE</span>
+                  <span className="about-photo-star">
+                    ✳
+                  </span>
+                </div>
+              )}
             </div>
 
-            {/* STATUS LABEL */}
             <div className="creator-photo-status">
               <span className="creator-photo-status-dot" />
               ♡ creator online
             </div>
           </div>
 
-          {/* PHOTO CAPTION */}
           <div className="about-photo-caption">
-            <span>MARIAH / CREATIVE TECHNOLOGIST</span>
+            <span>
+              MARIAH / CREATIVE TECHNOLOGIST
+            </span>
             <Sparkles size={18} />
           </div>
         </div>
@@ -109,7 +168,9 @@ export default function AboutPage({ onNavigate }) {
           </div>
 
           <div className="about-story-content">
-            <p className="eyebrow">HELLO, WORLD!</p>
+            <p className="eyebrow">
+              HELLO, WORLD!
+            </p>
 
             <h3>
               I'm Mariah, and I love creating things
@@ -203,15 +264,28 @@ export default function AboutPage({ onNavigate }) {
           </p>
         </div>
 
-        <a
-          href="/resume.pdf"
-          className="about-resume-button"
-          download="Mariah_Resume.pdf"
-        >
-          <Download size={19} />
-          Download Resume
-        </a>
+        {resumeUrl ? (
+          <a
+            href={resumeUrl}
+            className="about-resume-button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Download size={19} />
+            View Resume
+          </a>
+        ) : (
+          <span className="about-resume-button" style={{
+            opacity: 0.55,
+            cursor: "default",
+            pointerEvents: "none",
+          }}>
+            <Download size={19} />
+            Resume Coming Soon
+          </span>
+        )}
       </div>
     </section>
   );
 }
+

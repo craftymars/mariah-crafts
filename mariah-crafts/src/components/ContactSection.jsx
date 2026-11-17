@@ -1,4 +1,5 @@
 
+import { useEffect, useState } from "react";
 import {
   Camera,
   Video,
@@ -17,12 +18,7 @@ import {
   GitBranch,
 } from "lucide-react";
 
-
-
-import {
-  socialLinks,
-  contactDetails,
-} from "../data/socialLinks";
+import { supabase } from "../lib/supabase";
 
 const icons = {
   instagram: Camera,
@@ -38,9 +34,83 @@ const icons = {
   github: GitBranch,
 };
 
+const DEFAULT_CONTACT = {
+  heading: "Connect With Me",
+  intro:
+    "From design experiments to game development, there's always something happening somewhere. Pick your favorite corner of the internet.",
+  business_heading: "Have a project in mind?",
+  business_description:
+    "I'm always interested in hearing about creative collaborations, technical projects, and new opportunities.",
+  email: "",
+  phone: "",
+};
+
+function isValidUrl(value) {
+  try {
+    const url = new URL(value);
+    return ["http:", "https:"].includes(url.protocol);
+  } catch {
+    return false;
+  }
+}
+
 export default function ContactSection() {
-  const email = contactDetails?.email || "";
-  const phone = contactDetails?.phone || "";
+  const [socialLinks, setSocialLinks] = useState([]);
+  const [contactDetails, setContactDetails] =
+    useState(DEFAULT_CONTACT);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadContact() {
+      const [socialResult, contactResult] = await Promise.all([
+        supabase
+          .from("portfolio_social_links")
+          .select("id,name,category,icon,url,sort_order")
+          .eq("published", true)
+          .order("sort_order", { ascending: true })
+          .order("created_at", { ascending: true }),
+
+        supabase.rpc("get_portfolio_public_contact"),
+      ]);
+
+      if (!active) return;
+
+      if (socialResult.error || contactResult.error) {
+        console.error(
+          "Contact load error:",
+          socialResult.error || contactResult.error
+        );
+        setError("Contact information is temporarily unavailable.");
+      } else {
+        setSocialLinks(socialResult.data || []);
+
+        const publicContact = Array.isArray(contactResult.data)
+          ? contactResult.data[0]
+          : contactResult.data;
+
+        setContactDetails({
+          ...DEFAULT_CONTACT,
+          ...(publicContact || {}),
+        });
+
+        setError("");
+      }
+
+      setLoading(false);
+    }
+
+    loadContact();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const email = contactDetails.email || "";
+  const phone = contactDetails.phone || "";
 
   const validEmail =
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -51,89 +121,95 @@ export default function ContactSection() {
       id="contact"
       aria-labelledby="contact-heading"
     >
+      {/* CONTACT HEADER */}
       <div className="contact-heading">
         <p className="eyebrow">
           05 / FIND ME AROUND THE INTERNET
         </p>
 
         <h2 id="contact-heading">
-          Connect With Me
+          {contactDetails.heading}
           <span className="pink"> ✳</span>
         </h2>
 
-        <p>
-          From design experiments to game development,
-          there's always something happening somewhere.
-          Pick your favorite corner of the internet.
-        </p>
+        <p>{contactDetails.intro}</p>
       </div>
 
+      {/* SOCIAL DIRECTORY */}
       <div className="social-directory">
-        {socialLinks.map((social) => {
-          const Icon = icons[social.icon] || ExternalLink;
+        {loading && (
+          <p role="status">Loading connections... ♡</p>
+        )}
 
-          const hasLink =
-            typeof social.url === "string" &&
-            /^https?:\/\/.+/i.test(social.url);
+        {error && (
+          <p role="alert">{error}</p>
+        )}
 
-          const content = (
-            <>
-              <div className="social-icon">
-                <Icon size={25} strokeWidth={1.6} />
+        {!loading &&
+          !error &&
+          socialLinks.map((social) => {
+            const Icon = icons[social.icon] || ExternalLink;
+            const hasLink = isValidUrl(social.url);
+
+            const content = (
+              <>
+                <div className="social-icon">
+                  <Icon size={25} strokeWidth={1.6} />
+                </div>
+
+                <div className="social-information">
+                  <h3>{social.name}</h3>
+                  <p>{social.category}</p>
+                </div>
+
+                {hasLink ? (
+                  <ArrowUpRight
+                    size={18}
+                    className="social-arrow"
+                  />
+                ) : (
+                  <span className="social-soon">
+                    Coming Soon
+                  </span>
+                )}
+              </>
+            );
+
+            return hasLink ? (
+              <a
+                key={social.id}
+                className="social-card"
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit my ${social.name}`}
+              >
+                {content}
+              </a>
+            ) : (
+              <div
+                key={social.id}
+                className="social-card social-card-disabled"
+              >
+                {content}
               </div>
-
-              <div className="social-information">
-                <h3>{social.name}</h3>
-                <p>{social.category}</p>
-              </div>
-
-              {hasLink ? (
-                <ArrowUpRight
-                  size={18}
-                  className="social-arrow"
-                />
-              ) : (
-                <span className="social-soon">
-                  Coming Soon
-                </span>
-              )}
-            </>
-          );
-
-          return hasLink ? (
-            <a
-              key={social.id}
-              className="social-card"
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Visit my ${social.name}`}
-            >
-              {content}
-            </a>
-          ) : (
-            <div
-              key={social.id}
-              className="social-card social-card-disabled"
-            >
-              {content}
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
 
+      {/* PROFESSIONAL CONTACT */}
       <div className="contact-professional">
         <div className="contact-professional-intro">
           <p className="eyebrow">
             BUSINESS & COLLABORATIONS
           </p>
 
-          <h3>Have a project in mind?</h3>
+          <h3>
+            {contactDetails.business_heading}
+          </h3>
 
           <p>
-            I'm always interested in hearing about
-            creative collaborations, technical projects,
-            and new opportunities.
+            {contactDetails.business_description}
           </p>
         </div>
 

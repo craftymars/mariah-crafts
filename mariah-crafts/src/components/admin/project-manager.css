@@ -1,0 +1,263 @@
+
+.pm-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.pm-panel {
+  padding: 25px;
+  border: 1px solid #603455;
+  border-radius: 14px;
+  background: #211426;
+  min-width: 0;
+}
+
+.pm-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.pm-heading span {
+  color: #ff83c6;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+}
+
+.pm-heading h2 {
+  margin: 8px 0 0;
+  font-size: 21px;
+  color: #ffe0f1;
+}
+
+.pm-form,
+.pm-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.pm-form {
+  gap: 20px;
+}
+
+.pm-form label {
+  color: #f3d9e8;
+  font-size: 13px;
+}
+
+.pm-form input:not([type="checkbox"]),
+.pm-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: #140d18;
+  border: 1px solid #754b6a;
+  border-radius: 8px;
+  padding: 12px;
+  color: #fff0f8;
+  font: inherit;
+}
+
+.pm-form input:focus,
+.pm-form textarea:focus {
+  outline: 2px solid #ff66b8;
+  outline-offset: 1px;
+}
+
+.pm-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.pm-options label {
+  flex-direction: row;
+  align-items: center;
+}
+
+.pm-options input {
+  accent-color: #ff66b8;
+}
+
+.pm-save {
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #ff66b8;
+  color: #1b0d19;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.pm-save:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.pm-project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pm-project {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #2d1a30;
+  border: 1px solid #5a3553;
+  border-radius: 10px;
+}
+
+.pm-project h3 {
+  margin: 0 0 8px;
+  color: #ff9bd4;
+}
+
+.pm-project p {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: #d3b6cb;
+}
+
+.pm-project span {
+  font-size: 11px;
+  color: #ff8bcb;
+}
+
+.pm-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.pm-actions button,
+.pm-heading button {
+  border: 1px solid #ff66b8;
+  background: transparent;
+  color: #ff9bd4;
+  padding: 9px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.pm-actions .pm-delete {
+  border-color: #a85775;
+  color: #ff9caf;
+}
+
+.pm-error {
+  color: #ff9caf;
+}
+
+.pm-success {
+  color: #a4f0c1;
+}
+
+@media (max-width: 1050px) {
+  .pm-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cover image uploader */
+
+.pm-upload-field {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pm-upload-label {
+  color: #f3d9e8;
+  font-size: 13px;
+}
+
+.pm-file-input {
+  display: none;
+}
+
+.pm-dropzone {
+  min-height: 210px;
+  border: 2px dashed #a34a85;
+  border-radius: 12px;
+  background: #170e1b;
+  color: #ff92ce;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.2s ease;
+}
+
+.pm-dropzone:hover,
+.pm-dropzone.dragging,
+.pm-dropzone:focus-visible {
+  border-color: #ff66b8;
+  background: #30182e;
+  outline: none;
+}
+
+.pm-dropzone span,
+.pm-dropzone small {
+  color: #cdb5c6;
+}
+
+.pm-image-preview {
+  display: block;
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.pm-image-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #d8b6ce;
+  font-size: 12px;
+}
+
+.pm-image-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #a85775;
+  background: transparent;
+  color: #ff9caf;
+  padding: 9px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.pm-list-cover {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  border: 1px solid #754b6a;
+}
+
+@media (max-width: 520px) {
+  .pm-project {
+    flex-wrap: wrap;
+  }
+
+  .pm-actions {
+    width: 100%;
+  }
+}

@@ -1,0 +1,127 @@
+
+/* =====================================
+   MARIAH CRAFTS OS
+   FLOATING PIXEL HEART BACKGROUND
+===================================== */
+
+.cms-os-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.cms-pixel-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 75% 15%,
+      rgba(255, 65, 160, 0.09),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 20% 85%,
+      rgba(155, 60, 150, 0.08),
+      transparent 45%
+    ),
+    #100b13;
+}
+
+/* PIXEL GRID */
+
+.cms-pixel-grid {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 120, 190, 0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 120, 190, 0.045) 1px,
+      transparent 1px
+    );
+
+  background-size: 28px 28px;
+}
+
+/* FLOATING HEARTS */
+
+.cms-floating-heart {
+  position: absolute;
+  display: block;
+
+  color: #ff65b5;
+  font-family: "Pixelify Sans", monospace;
+  line-height: 1;
+
+  opacity: 0.35;
+
+  text-shadow:
+    0 0 8px rgba(255, 101, 181, 0.5),
+    0 0 18px rgba(255, 101, 181, 0.2);
+
+  animation-name: cms-heart-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* FLOAT + BLINK */
+
+@keyframes cms-heart-float {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.9);
+    opacity: 0.12;
+  }
+
+  25% {
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: translate3d(8px, -15px, 0) scale(1.1);
+    opacity: 0.2;
+  }
+
+  75% {
+    opacity: 0.55;
+  }
+
+  100% {
+    transform: translate3d(-5px, -28px, 0) scale(0.95);
+    opacity: 0.1;
+  }
+}
+
+/* KEEP CONTENT ABOVE BACKGROUND */
+
+.cms-os-sidebar,
+.cms-os-main {
+  position: relative;
+  z-index: 1;
+}
+
+.cms-os-main {
+  background: transparent;
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .cms-floating-heart {
+    animation: none;
+    opacity: 0.18;
+  }
+}
+.cms-os-shell .cms-os-sidebar,
+.cms-os-shell .cms-os-main,
+.admin-screen .admin-login {
+  position: relative;
+  z-index: 1;
+}

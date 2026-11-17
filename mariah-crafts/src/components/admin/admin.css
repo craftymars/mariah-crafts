@@ -1,0 +1,398 @@
+
+/* =====================================
+   MARIAH CRAFTS OS - ADMIN LOGIN
+===================================== */
+
+.admin-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      #43203d 0%,
+      #120b17 65%
+    );
+  color: #ffe4f2;
+  font-family: "DM Sans", sans-serif;
+}
+
+.admin-login {
+  width: min(100%, 420px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 36px;
+  background: #211329;
+  border: 2px solid #ff65b5;
+  border-radius: 12px;
+  box-shadow:
+    6px 6px 0 #5a2852,
+    0 0 30px rgba(255, 101, 181, 0.15);
+}
+
+.admin-login h1 {
+  margin: 0;
+  font-family: "Chakra Petch", sans-serif;
+  color: #ff91c9;
+  font-size: 30px;
+}
+
+.admin-eyebrow {
+  color: #ff91c9;
+  font-family: "Pixelify Sans", monospace;
+  font-size: 13px;
+}
+
+.admin-subtitle {
+  color: #d6b6d1;
+  font-size: 14px;
+}
+
+.admin-login label {
+  color: #ffe4f2;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.admin-login input {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 1px solid #76476e;
+  border-radius: 6px;
+  background: #120b17;
+  color: white;
+  font: inherit;
+}
+
+.admin-login input:focus {
+  outline: 2px solid #ff91c9;
+  outline-offset: 2px;
+}
+
+.admin-login button,
+.admin-logout {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 6px;
+  background: #ff65b5;
+  color: #190c17;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.admin-login button:hover,
+.admin-logout:hover {
+  background: #ff9ad2;
+}
+
+.admin-login button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.admin-error {
+  color: #ff9aab;
+  font-size: 13px;
+}
+
+.admin-logout {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+@media (max-width: 480px) {
+  .admin-login {
+    padding: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-login button,
+  .admin-logout {
+    transition: none;
+  }
+}
+
+/* =====================================
+   MARIAH CRAFTS OS
+   LOGIN SCREEN POLISH
+===================================== */
+
+.admin-login {
+  position: relative;
+  overflow: hidden;
+  animation: cms-login-enter 0.45s ease-out both;
+}
+
+.admin-login::before {
+  content: "♡ SECURE ACCESS.exe";
+  display: block;
+  margin-bottom: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 145, 201, 0.25);
+  color: #ff91c9;
+  font-family: "Pixelify Sans", monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.admin-login::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    transparent 0px,
+    transparent 5px,
+    rgba(255, 255, 255, 0.012) 6px
+  );
+}
+
+.admin-login input {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.admin-login input:hover {
+  border-color: #e77ab5;
+}
+
+.admin-login input:focus {
+  border-color: #ff91c9;
+  box-shadow: 0 0 0 4px rgba(255, 101, 181, 0.12);
+}
+
+.admin-login button:not(:disabled):hover,
+.admin-logout:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 #75345e;
+}
+
+.admin-login button:not(:disabled):active,
+.admin-logout:active {
+  transform: translateY(1px);
+  box-shadow: 1px 1px 0 #75345e;
+}
+
+.admin-login button:focus-visible,
+.admin-logout:focus-visible {
+  outline: 2px solid #ffe4f2;
+  outline-offset: 3px;
+}
+
+@keyframes cms-login-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-login {
+    animation: none;
+  }
+
+  .admin-login input,
+  .admin-login button,
+  .admin-logout {
+    transition: none;
+  }
+}
+
+/* ============================================
+   MARIAH CRAFTS OS
+   PIXEL LOGIN SCREEN POLISH
+============================================ */
+
+.admin-screen {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 100dvh;
+}
+
+/* Animated background */
+
+.admin-screen .cms-pixel-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+/* Login window */
+
+.admin-screen .admin-login {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 440px);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(47, 25, 52, 0.97),
+      rgba(24, 13, 30, 0.98)
+    );
+
+  border: 2px solid #ff65b5;
+  border-radius: 10px;
+
+  box-shadow:
+    6px 6px 0 #5a2852,
+    0 0 35px rgba(255, 101, 181, 0.14);
+
+  backdrop-filter: blur(10px);
+}
+
+/* Pixel corner detail */
+
+.admin-screen .admin-login::before {
+  content: "♡ SECURE ACCESS.exe";
+  display: block;
+
+  margin-bottom: 10px;
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid #633452;
+
+  color: #ff91c9;
+  font-family: "Pixelify Sans", monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+/* Animated border glow */
+
+@keyframes admin-border-glow {
+  0%, 100% {
+    box-shadow:
+      6px 6px 0 #5a2852,
+      0 0 18px rgba(255, 101, 181, 0.12);
+  }
+
+  50% {
+    box-shadow:
+      6px 6px 0 #5a2852,
+      0 0 32px rgba(255, 101, 181, 0.25);
+  }
+}
+
+.admin-screen .admin-login {
+  animation:
+    cms-login-enter 0.45s ease-out both,
+    admin-border-glow 5s ease-in-out 0.45s infinite;
+}
+
+/* Form fields */
+
+.admin-screen .admin-login input {
+  background: #140c19;
+  border: 1px solid #76476e;
+  border-radius: 6px;
+}
+
+.admin-screen .admin-login input:hover {
+  border-color: #ff91c9;
+}
+
+.admin-screen .admin-login input:focus {
+  border-color: #ff65b5;
+  box-shadow: 0 0 0 4px rgba(255, 101, 181, 0.12);
+}
+
+/* Login button */
+
+.admin-screen .admin-login button:not(:disabled) {
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.admin-screen .admin-login button:not(:disabled):hover {
+  background: #ff9ad2;
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 #71345e;
+}
+
+/* Mobile */
+
+@media (max-width: 520px) {
+  .admin-screen {
+    padding: 20px;
+  }
+
+  .admin-screen .admin-login {
+    padding: 24px;
+    box-shadow: 4px 4px 0 #5a2852;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-screen .admin-login {
+    animation: none;
+  }
+}
+
+/* =====================================
+   MARIAH CRAFTS OS
+   LOADING ANIMATION
+===================================== */
+
+.admin-loading-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  padding: 15px 0;
+}
+
+.admin-loading-indicator span {
+  width: 9px;
+  height: 9px;
+  background: #ff65b5;
+  border-radius: 2px;
+  box-shadow: 0 0 9px rgba(255, 101, 181, 0.35);
+  animation: admin-loading-blink 1.2s ease-in-out infinite;
+}
+
+.admin-loading-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.admin-loading-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes admin-loading-blink {
+  0%, 100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-loading-indicator span {
+    animation: none;
+    opacity: 1;
+  }
+}

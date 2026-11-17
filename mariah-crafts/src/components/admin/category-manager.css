@@ -1,0 +1,271 @@
+
+.cm-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.cm-panel {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid rgba(255, 135, 200, 0.2);
+  border-radius: 16px;
+  background: #17131d;
+  color: #f8eff6;
+}
+
+.cm-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.cm-heading span {
+  color: #ff86c5;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.cm-heading h2 {
+  margin: 7px 0 0;
+  font-size: 22px;
+}
+
+.cm-heading > button,
+.cm-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 11px;
+  border: 1px solid #493448;
+  border-radius: 9px;
+  background: #241c2b;
+  color: #f8eff6;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+}
+
+.cm-form {
+  display: grid;
+  gap: 18px;
+}
+
+.cm-form label,
+.cm-field {
+  display: grid;
+  gap: 9px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cm-form input:not([type="color"]),
+.cm-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #483449;
+  border-radius: 9px;
+  background: #211a29;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+}
+
+.cm-form input:focus,
+.cm-form textarea:focus {
+  outline: 2px solid #ff4eab;
+  outline-offset: 1px;
+}
+
+.cm-swatches,
+.cm-icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.cm-swatch {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.cm-swatch.selected {
+  border-color: #fff;
+  outline: 2px solid #ff4eab;
+}
+
+.cm-color-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cm-color-controls input[type="color"] {
+  width: 54px;
+  height: 44px;
+  padding: 3px;
+  border: 1px solid #483449;
+  border-radius: 9px;
+  background: #211a29;
+  cursor: pointer;
+}
+
+.cm-color-controls input:not([type="color"]) {
+  flex: 1;
+  min-width: 0;
+}
+
+.cm-icon-choice {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #483449;
+  border-radius: 10px;
+  background: #211a29;
+  color: #d8c8d7;
+  cursor: pointer;
+}
+
+.cm-icon-choice.selected {
+  border-color: #ff4eab;
+  background: rgba(255, 78, 171, 0.15);
+  color: #ff4eab;
+}
+
+.cm-save {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  padding: 14px;
+  border: 0;
+  border-radius: 10px;
+  background: #ff4eab;
+  color: #180c16;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.cm-category-list {
+  display: grid;
+  gap: 12px;
+}
+
+.cm-category {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #3a2b3f;
+  border-radius: 12px;
+  background: #211a29;
+}
+
+.cm-category-icon {
+  flex: 0 0 48px;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: color-mix(
+    in srgb,
+    var(--category-color) 17%,
+    #211a29
+  );
+  color: var(--category-color);
+}
+
+.cm-category-info {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  gap: 5px;
+}
+
+.cm-category-info strong {
+  font-size: 14px;
+}
+
+.cm-category-info span,
+.cm-category-info small {
+  color: #b7a8b9;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.cm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.cm-actions button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.cm-actions button:not(:disabled):hover,
+.cm-heading > button:hover {
+  border-color: #ff4eab;
+  color: #ff9fd1;
+}
+
+.cm-subheading {
+  margin: 28px 0 14px;
+  font-size: 16px;
+}
+
+.cm-error,
+.cm-success {
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.cm-error {
+  background: #3b1b2b;
+  color: #ffb3c9;
+}
+
+.cm-success {
+  background: #24352e;
+  color: #b2f0cb;
+}
+
+@media (max-width: 1050px) {
+  .cm-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .cm-panel {
+    padding: 16px;
+  }
+
+  .cm-category {
+    flex-wrap: wrap;
+  }
+
+  .cm-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
